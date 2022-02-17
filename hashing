@@ -1,0 +1,69 @@
+# dsprograms
+#include<stdio.h>
+#include<stdlib.h>
+struct hash
+{
+    int data;
+    struct hash *next;
+   
+}*newnode,*temp;
+struct hash *chain[];
+void initial(int n)
+{
+    int i;
+    for(i=0;i<n;i++)
+{
+    chain[i]=NULL;
+}
+}
+void insert(int n)
+{
+    int key,val,i=0;
+    while(i<n)
+    {
+        newnode=(struct hash*)malloc(sizeof(struct hash));
+        printf("enter value:");
+        scanf("%d",&val);
+        newnode->data=val;
+        newnode->next=NULL;
+        key=val%n;
+        if(chain[key]==NULL)
+        {
+            chain[key]=newnode;
+        }
+        else
+        {
+            temp=chain[key];
+            while(temp->next!=NULL)
+            {
+                temp=temp->next;
+               
+            }
+            temp->next=newnode;
+        }
+        i=i+1;
+    }
+}
+void display(int n)
+{
+    int i;
+    for(i=0;i<n;i++)
+    {
+        temp=chain[i];
+        printf("chain[%d]->",i);
+        while(temp!=NULL)
+        {
+            printf("%d",temp->data);
+            temp=temp->next;
+        }
+    }
+}
+void main()
+{
+    int n;
+    printf("enter value");
+    scanf("%d",&n);
+    initial(n);
+    insert(n);
+    display(n);      
+}
