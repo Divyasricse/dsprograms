@@ -1,0 +1,141 @@
+# dsprograms
+#include <stdio.h>
+
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+}*newnode,*head,*tail,*temp;
+struct node *head=NULL;
+struct node *tail=NULL;
+void create()
+{
+    int ch,value;
+    do{
+        newnode=(struct node*)malloc(sizeof(struct node));
+       
+        printf("enter value");
+        scanf("%d",&value);
+        newnode->data=value;
+        newnode->next=newnode;
+        if(head==NULL)
+        {
+            head=newnode;
+            tail=newnode;
+        }
+        else
+        {
+            tail->next=newnode;
+            tail=newnode;
+            tail->next=head;
+        }
+        printf("1-continue,2-exit");
+       
+        scanf("%d",&ch);
+    }
+    while(ch==1);
+}
+void display()
+{
+    temp=head;
+    while(temp->next!=head)
+    {
+        printf("%d",temp->data);
+        temp=temp->next;
+    }
+    printf("%d",temp->data);
+}
+void insert_beg()
+{
+    int value;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    printf("enter value");
+    scanf("%d",&value);
+    newnode->data=value;
+    newnode->next=head;
+    tail->next=newnode;
+    head=newnode;
+}
+  void insert_end()
+{
+    int value;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    printf("enter value");
+    scanf("%d",&value);
+    newnode->data=value;
+    tail->next=newnode;
+    newnode->next=head;
+    tail=newnode;
+}
+void insert_pos()
+{
+    temp=head;
+    int value,pos,i;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    printf("enter value");
+    scanf("%d",&value);
+    printf("enter position");
+    scanf("%d",&pos);
+    for(i=0;i<pos-1;i++)
+    {
+        temp=temp->next;
+    }
+    newnode->data=value;
+    newnode->next=temp->next;
+    temp->next=newnode;
+}
+void delete_beg()
+{
+    temp=head;
+    head=head->next;
+    tail->next=head;
+    temp->next=NULL;
+}
+void delete_end()
+{
+    temp=head;
+    while(temp->next!=tail)
+    {
+        temp=temp->next;
+    }
+    tail->next=NULL;
+    temp->next=head;
+    tail=temp;
+}
+void delete_pos()
+{
+    int i,pos;
+    printf("enter position");
+    scanf("%d",&pos);
+    temp=head;
+    for(i=0;i<pos-1;i++)
+    {
+    temp=temp->next;
+    }
+    temp->next=temp->next->next;
+}
+void main()
+{
+    int ch;
+    create();
+    printf("1-insert at beg,2-insert at end,3-insert at any position,4-delete at beg,5-delete at end,6-delete at position");
+    scanf("%d",&ch);
+    if(ch==1)
+    insert_beg();
+    else if(ch==2)
+    insert_pos();
+    else if(ch==3)
+    insert_end();
+    else if(ch==4)
+    delete_beg();
+    else if(ch==5)
+    delete_end();
+    else if(ch==6)
+    delete_pos();
+    display();
+}
+
+
+   
+
