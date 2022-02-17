@@ -1,0 +1,67 @@
+# dsprograms
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 50
+int a[MAX];
+int front=0;
+int rear=0;
+void main()
+{
+        int choice;
+        printf("enter expression");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+          case 1:insert();
+                break;
+          case 2:display();
+                 break;
+          case 3:delete();
+                 break;
+          default:printf("yow enter wrong choice");
+                 break;
+        }
+}
+void insert()
+{
+        int val;
+        if(rear==MAX)
+        {
+         printf("over flow");
+        }
+        else
+        {
+        printf("enter a value");
+        scanf("%d",&val);
+        a[rear]=val;
+        rear=rear+1;
+        }
+}
+void display()
+{
+    int i;
+    if(front==rear)
+    {
+            printf("empty");
+    }
+    else
+    {
+            for(i=front;i<rear;i++)
+            {
+                    printf("%d",a[i]);
+            }
+    }
+}
+void delete()
+{
+        if(front==rear)
+        {
+                printf("underflow");
+        }
+        else
+        {
+                printf("%d",a[front]);
+                front=front+1;
+        }
+}
+
