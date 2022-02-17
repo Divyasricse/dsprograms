@@ -1,0 +1,108 @@
+# dsprograms
+#include<stdio.h>            
+#include<stdlib.h>    
+struct node            
+{                      
+    int coefficient;  
+    int exponential;  
+    struct node *next;
+    }*newnode;      
+    struct node *head=NULL;        
+    struct node *tail=NULL;        
+    struct node  *create(struct node *head)  
+    {                                
+        int co,e;                  
+        char ch;                  
+        do                          
+        {                          
+            newnode=(struct node*)malloc(sizeof(struct node));        
+            printf("enter the co-efficient");                        
+            scanf("%d",&co);  
+            printf("enter the exponential");
+            scanf("%d",&e);      
+            newnode->coefficient=co;    
+            newnode->exponential=e;                                
+            newnode->next=NULL;            
+            if(head==NULL)                        
+            {                                    
+                head=newnode;                      
+                tail=newnode;                            
+                }                                        
+            else  
+            {                        
+                    tail->next=newnode;    
+                    tail=newnode;          
+            }                    
+                    printf("Y-continue,N-exit");                            
+                    fflush(stdin);          
+                    scanf(" %c",&ch);        
+                    }while(ch=='Y');
+                    return head;    
+                    }                
+                    void display(struct node *head)  
+                    {                                
+                        struct node *temp=head;
+                        printf("\n");
+                        if(head==NULL)
+                        {
+                            printf("no list to print");
+                        }
+                        else
+                        {
+                        while(temp!=NULL)            
+                        {            
+                            printf("%dx^%d+",temp->coefficient,temp->exponential);  
+                            temp=temp->next;                                      
+                        }
+                        }
+                    }              
+                            void add_poly( struct node *head1,struct node *head2)        
+                            {                                                                        
+                                struct node *temp1=head1;                                                        
+                                struct node *temp2=head2;  
+                                printf("\n");
+                                while(temp1!=NULL&&temp2!=NULL)              
+                                {                                            
+                                    if(temp1->exponential==temp2->exponential)  
+                                    {                              
+                                        printf("%dx^%d",temp1->coefficient+temp2->coefficient,temp1->exponential);
+                                        temp1=temp1->next;        
+                                        temp2=temp2->next;      
+                                    }                                                                        
+                                    else if(temp1->exponential>temp2->exponential)              
+                                    {                                  
+                                        printf("+%dx^%d",temp1->coefficient,temp1->exponential);  
+                                        temp1=temp1->next;                                  
+                                        }                                                
+                                        else                            
+                                        {                                
+                                            printf("+%dx^%d",temp2->coefficient,temp2->exponential);
+                                            temp2=temp2->next;                              
+                                            }
+                                            }
+                                            if(temp1!=NULL)    
+                                            {
+                                                while(temp1!=NULL)
+                                                {                                          
+                                                    printf("+%dx^%d",temp1->coefficient,temp1->exponential);  
+                                                    temp1=temp1->next;                                        
+                                                    }
+                                                    }
+                                                    else
+                                                    {                                                    
+                                                        printf("+%dx^%d",temp2->coefficient,temp2->exponential);
+                                                        temp2=temp2->next;            
+                                                        }                            
+                                                        }
+                                                        void main()                
+                                                        {
+                                                            struct node *head=NULL,*head1,*head2,*head3=NULL;
+                                                            head1=create(head3);
+                                                            head2=create(head);
+                                                            display(head1);
+                                                            display(head2);    
+                                                            add_poly(head1,head2);  
+                                                            }                        
+                                                           
+                                                           
+                                                            
