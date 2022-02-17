@@ -1,0 +1,78 @@
+# dsprograms
+#include <stdio.h>
+
+
+
+
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+}*newnode,*temp;
+struct node *head=NULL;
+struct node *tail=NULL;
+
+
+void create()
+{
+    int value,n,i=0;
+    printf("enter value");
+    scanf("%d",&n);
+    while(i<n)
+    {
+        newnode=(struct node*)malloc(sizeof(struct node));
+        printf("enter nodes");
+        scanf("%d",&value);
+        if(head==NULL)
+        {
+            head=newnode;
+            tail=newnode;
+            newnode->data=value;
+            newnode->next=NULL;
+        }    
+        else
+        {
+            tail->next=newnode;
+            tail=newnode;
+            newnode->data=value;
+            newnode->next=NULL;
+        }
+        i+=1;
+    }
+}
+
+void reverse()
+{
+    int a[10],i,n;
+    printf("enter number of elements");
+    scanf("%d",&n);
+    temp=head;
+    for(i=0;i<n;i++)
+    {
+        a[i]=temp->data;
+        temp=temp->next;
+    }
+    for(i=n-1;i>=0;i--)
+    {
+        printf("%d",a[i]);
+    }
+}
+void display()
+{
+    temp=head;
+    while(temp!=NULL)
+    {
+        printf("%d",temp->data);
+        temp=temp->next;
+    }
+}      
+void main()
+{
+    create();
+    reverse();
+    display();
+}
+
+
+    
